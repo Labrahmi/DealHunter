@@ -10,11 +10,11 @@ import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 const deals = [
-  { id: 1, title: '50% off at SuperMart', category: 'Groceries', expiresIn: '2 days', image: '/placeholder.svg?height=200&width=200' },
-  { id: 2, title: '$20 off $100 at FashionHub', category: 'Clothing', expiresIn: '5 days', image: '/placeholder.svg?height=200&width=200' },
-  { id: 3, title: 'Buy 1 Get 1 Free at TechZone', category: 'Electronics', expiresIn: '1 week', image: '/placeholder.svg?height=200&width=200' },
-  { id: 4, title: '30% off all books at BookWorm', category: 'Books', expiresIn: '3 days', image: '/placeholder.svg?height=200&width=200' },
-  { id: 5, title: 'Free shipping on orders over $50 at HomeGoods', category: 'Home & Garden', expiresIn: '1 month', image: '/placeholder.svg?height=200&width=200' },
+  { id: 1, title: '50% off at SuperMart', category: 'Groceries', expiresIn: '2 days', image: '/deals_images/1.jpg' },
+  { id: 2, title: '$20 off $100 at FashionHub', category: 'Clothing', expiresIn: '5 days', image: '/deals_images/2.jpg' },
+  { id: 3, title: 'Buy 1 Get 1 Free at TechZone', category: 'Electronics', expiresIn: '1 week', image: '/deals_images/3.jpg' },
+  { id: 4, title: '30% off all books at BookWorm', category: 'Books', expiresIn: '3 days', image: '/deals_images/4.jpg' },
+  { id: 5, title: 'Free shipping on orders over $50 at HomeGoods', category: 'Home & Garden', expiresIn: '1 month', image: '/deals_images/5.jpg' },
 ]
 
 export default function DealsPage() {
@@ -54,22 +54,22 @@ export default function DealsPage() {
         </Select>
       </div>
 
-      <div className="space-y-6">
+      <div className="grid gap-8 xl:grid-cols-2">
         {filteredDeals.map((deal) => (
-          <Card key={deal.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/4">
+          <Card key={deal.id} className="overflow-hidden xl:h-[16rem] hover:shadow-lg transition-shadow duration-300">
+            <div className="flex h-full flex-col md:flex-row">
+              <div className="md:w-64">
                 <Image
                   src={deal.image}
                   alt={deal.title}
                   width={200}
                   height={200}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
-              <div className="md:w-3/4 p-6">
+              <div className="md:w-3/4 p-2">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-indigo-700">{deal.title}</CardTitle>
+                  <CardTitle className="text-xl text-indigo-700">{deal.title}</CardTitle>
                   <CardDescription>
                     <Badge className="bg-indigo-100 text-indigo-800">{deal.category}</Badge>
                   </CardDescription>

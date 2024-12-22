@@ -7,13 +7,16 @@ import { ArrowLeft, Copy, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { toast } from '@/components/ui/use-toast'
+import { toast } from '@/components/use-toast'
 
 const deals = [
-  { id: 1, title: '50% off at SuperMart', category: 'Groceries', expiresIn: '2 days', description: 'Get 50% off on all grocery items at SuperMart. Limited time offer!', code: 'SUPER50', image: '/placeholder.svg?height=400&width=600', merchantLogo: '/placeholder.svg?height=100&width=100', merchantName: 'SuperMart', termsAndConditions: ['Valid on all items', 'Cannot be combined with other offers', 'Valid until stocks last'] },
-  { id: 2, title: '$20 off $100 at FashionHub', category: 'Clothing', expiresIn: '5 days', description: 'Shop for $100 or more at FashionHub and get $20 off your purchase.', code: 'FASHION20', image: '/placeholder.svg?height=400&width=600', merchantLogo: '/placeholder.svg?height=100&width=100', merchantName: 'FashionHub', termsAndConditions: ['Minimum purchase of $100 required', 'Valid on regular-priced items only', 'One coupon per customer'] },
-  { id: 3, title: 'Buy 1 Get 1 Free at TechZone', category: 'Electronics', expiresIn: '1 week', description: 'Purchase any electronic item at TechZone and get another one for free!', code: 'TECHBOGO', image: '/placeholder.svg?height=400&width=600', merchantLogo: '/placeholder.svg?height=100&width=100', merchantName: 'TechZone', termsAndConditions: ['Valid on select items only', 'Lower priced item will be free', 'While stocks last'] },
+  { id: 1, title: '50% off at SuperMart', category: 'Groceries', expiresIn: '2 days', description: 'Get 50% off on all grocery items at SuperMart. Limited time offer!', code: 'SUPER50', image: '/deals_images/1.jpg', merchantLogo: '/placeholder.svg', merchantName: 'SuperMart', termsAndConditions: ['Valid on all items', 'Cannot be combined with other offers', 'Valid until stocks last'] },
+  { id: 2, title: '$20 off $100 at FashionHub', category: 'Clothing', expiresIn: '5 days', description: 'Shop for $100 or more at FashionHub and get $20 off your purchase.', code: 'FASHION20', image: '/deals_images/2.jpg', merchantLogo: '/placeholder.svg', merchantName: 'FashionHub', termsAndConditions: ['Minimum purchase of $100 required', 'Valid on regular-priced items only', 'One coupon per customer'] },
+  { id: 3, title: 'Buy 1 Get 1 Free at TechZone', category: 'Electronics', expiresIn: '1 week', description: 'Purchase any electronic item at TechZone and get another one for free!', code: 'TECHBOGO', image: '/deals_images/3.jpg', merchantLogo: '/placeholder.svg', merchantName: 'TechZone', termsAndConditions: ['Valid on select items only', 'Lower priced item will be free', 'While stocks last'] },
+  { id: 4, title: '30% off all books at BookWorm', category: 'Books', expiresIn: '3 days', description: 'Get 30% off on all books at BookWorm. Limited time offer!', code: 'BOOK30', image: '/deals_images/4.jpg', merchantLogo: '/placeholder.svg', merchantName: 'BookWorm', termsAndConditions: ['Valid on all books', 'Cannot be combined with other offers', 'Valid until stocks last'] },
+  { id: 5, title: 'Free shipping on orders over $50 at HomeGoods', category: 'Home & Garden', expiresIn: '1 month', description: 'Enjoy free shipping on orders over $50 at HomeGoods.', code: 'FREESHIP50', image: '/deals_images/5.jpg', merchantLogo: '/placeholder.svg', merchantName: 'HomeGoods', termsAndConditions: ['Minimum purchase of $50 required', 'Valid on all items', 'Cannot be combined with other offers'] },
 ]
+
 
 export default function DealPage({ params }: { params: { id: string } }) {
   const [isCopied, setIsCopied] = useState(false)

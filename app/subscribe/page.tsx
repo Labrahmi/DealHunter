@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
-import { toast } from '@/components/ui/use-toast'
+import { toast } from '@/components/use-toast'
 import { Sparkles, Gift, Mail, CheckCircle } from 'lucide-react'
 
 export default function SubscribePage() {
