@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createRoot } from 'react-dom/client'
 
 interface ToastProps {
   title: string
@@ -6,7 +7,7 @@ interface ToastProps {
   duration?: number
 }
 
-export const toast = ({ title, description, duration = 3000 }: ToastProps) => {
+const Toast = ({ title, description, duration = 3000 }: ToastProps) => {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
@@ -27,7 +28,21 @@ export const toast = ({ title, description, duration = 3000 }: ToastProps) => {
   )
 }
 
+export const toast = ({ title, description, duration = 3000 }: ToastProps) => {
+  const toastContainer = document.createElement('div')
+  document.body.appendChild(toastContainer)
+
+  const root = createRoot(toastContainer)
+  root.render(
+    <Toast title={title} description={description} duration={duration} />
+  )
+
+  setTimeout(() => {
+    root.unmount()
+    document.body.removeChild(toastContainer)
+  }, duration + 500) // Adding a little delay to ensure the unmount happens after the toast is hidden
+}
+
 export const useToast = () => {
   return { toast }
 }
-

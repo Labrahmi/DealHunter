@@ -78,7 +78,7 @@ export default function DealPage({ params }: { params: { id: string } }) {
               <h3 className="font-semibold text-indigo-700 mb-2">How to use this deal:</h3>
               <ol className="list-decimal list-inside text-gray-700">
                 <li>Copy the coupon code below</li>
-                <li>Click the "Shop Now" button to visit the merchant's website</li>
+                <li>Click the Shop Now button to visit the merchant website</li>
                 <li>Apply the code at checkout to receive your discount</li>
               </ol>
             </div>

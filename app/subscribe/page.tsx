@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/components/use-toast'
@@ -112,7 +112,7 @@ export default function SubscribePage() {
             </ul>
             <div className="mt-8">
               <Image
-                src="/placeholder.svg?height=300&width=400"
+                src="/placeholder.svg"
                 alt="Happy subscribers"
                 width={400}
                 height={300}
