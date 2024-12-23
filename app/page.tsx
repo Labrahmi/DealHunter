@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import HeroSlider from "@/components/HeroSlider";
+import { ExternalLink } from 'lucide-react';
 
 export default function Home() {
   const categories = [
@@ -191,14 +192,22 @@ export default function Home() {
               </Card>
             ))}
           </div>
-          <div className="text-center mt-8">
+          <div style={
+            // { backgroundImage: "url('/texture.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundBlendMode: "overlay" }
+            {}
+          } className="w-full text-center my-12 p-6 py-16 bg-indigo-200 bg-opacity-20 rounded-lg relative overflow-hidden">
             <Button
               asChild
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full"
+              className="bg-white hover:bg-indigo-600 hover:text-white text-xl text-black font-bold p-6 px-12 rounded-lg"
             >
-              <Link href="/deals">View All Deals</Link>
+              <Link href="/deals">
+                <h1>View All Deals</h1>
+                <ExternalLink className="size-8" />
+              </Link>
             </Button>
+            <img src="/texture.jpg" alt="" className="absolute w-full h-full top-0 left-0 object-cover -z-10 opacity-50 blur-sm" />
           </div>
+          {/* <div className="pointer-events-none opacity-50 absolute inset-0 z-[-1] h-screen bg-grid-pattern mask-gradient"></div> */}
         </section>
 
         <section className="mb-16">
@@ -240,7 +249,7 @@ export default function Home() {
         </section>
 
         <section>
-          <Card className="bg-indigo-50">
+          <Card className="">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-center text-indigo-800">
                 Never Miss a Deal
@@ -251,15 +260,15 @@ export default function Home() {
                 Subscribe to our newsletter and get the best deals delivered to
                 your inbox daily!
               </p>
-              <form className="flex flex-col md:flex-row gap-4 justify-center">
+              <form className="flex flex-col p-0 rounded-full items-center md:flex-row gap-4 justify-center ring-2 ring-indigo-500 w-fit mx-auto overflow-hidden">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="px-4 py-2 rounded-full focus:outline-none "
                 />
                 <Button
                   type="submit"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-full"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 h-12 rounded-none"
                 >
                   Subscribe
                 </Button>
