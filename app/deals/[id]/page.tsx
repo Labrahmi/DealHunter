@@ -26,7 +26,11 @@ export default function DealPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     const getDeals = async () => {
       const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-      const res = await fetch(`${backendUrl}/coupons/${params.id}`);
+      const res = await fetch(`${backendUrl}/coupons/${params.id}`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        }
+      });
       const data = await res.json();
       setDeal(data);
     };
