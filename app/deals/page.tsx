@@ -1,36 +1,55 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-
-const deals = [
-  { id: 1, title: '50% off at SuperMart', category: 'Groceries', expiresIn: '2 days', image: '/deals_images/1.jpg' },
-  { id: 2, title: '$20 off $100 at FashionHub', category: 'Clothing', expiresIn: '5 days', image: '/deals_images/2.jpg' },
-  { id: 3, title: 'Buy 1 Get 1 Free at TechZone', category: 'Electronics', expiresIn: '1 week', image: '/deals_images/3.jpg' },
-  { id: 4, title: '30% off all books at BookWorm', category: 'Books', expiresIn: '3 days', image: '/deals_images/4.jpg' },
-  { id: 5, title: 'Free shipping on orders over $50 at HomeGoods', category: 'Home & Garden', expiresIn: '1 month', image: '/deals_images/5.jpg' },
-]
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Coupon } from "@/types/Coupon";
 
 export default function DealsPage() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [deals, setDeals] = useState<Coupon[]>([]);
 
   const filteredDeals = deals.filter((deal) => {
     return (
       deal.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedCategory === 'all' || deal.category === selectedCategory)
-    )
-  })
+      (selectedCategory === "all" || deal.category === selectedCategory)
+    );
+  });
+
+  useEffect(() => {
+    const getDeals = async () => {
+      const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
+      const res = await fetch(`${backendUrl}/coupons`);
+      const data = await res.json();
+      setDeals(data);
+    };
+    getDeals();
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6 text-indigo-700 text-center">All Deals</h1>
+    <div className="containerx mx-autox px-4 py-8">
+      <h1 className="text-4xl font-bold mb-6 text-indigo-700 text-center">
+        All Deals
+      </h1>
       <div className="flex flex-col md:flex-row gap-4 mb-6">
         <Input
           type="search"
@@ -56,11 +75,17 @@ export default function DealsPage() {
 
       <div className="grid gap-8 xl:grid-cols-2">
         {filteredDeals.map((deal) => (
-          <Card key={deal.id} className="overflow-hidden xl:h-[16rem] hover:shadow-lg transition-shadow duration-300">
+          <Card
+            key={deal.id}
+            className="overflow-hidden xl:h-[16rem] hover:shadow-lg transition-shadow duration-300"
+          >
             <div className="flex h-full flex-col md:flex-row">
-              <div className="md:w-64">
+              <div className="md:w-64 h-64">
                 <Image
-                  src={deal.image}
+                  src={
+                    deal.image ||
+                    "https://placehold.co/600x400/000000/FFFFFF/png"
+                  }
                   alt={deal.title}
                   width={200}
                   height={200}
@@ -69,16 +94,34 @@ export default function DealsPage() {
               </div>
               <div className="md:w-3/4 p-2">
                 <CardHeader>
-                  <CardTitle className="text-xl text-indigo-700">{deal.title}</CardTitle>
+                  <CardTitle className="text-xl text-indigo-700">
+                    {deal.title}
+                  </CardTitle>
                   <CardDescription>
-                    <Badge className="bg-indigo-100 text-indigo-800">{deal.category}</Badge>
+                    <Badge
+                      variant="outline"
+                      className="bg-indigo-100 text-indigo-800 cursor-default"
+                    >
+                      {deal.category}
+                    </Badge>
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600">Expires in: {deal.expiresIn}</p>
+                  <p className="text-gray-600">
+                    Expires in:{" "}
+                    {Math.ceil(
+                      (new Date(deal.valid_until).getTime() -
+                        new Date().getTime()) /
+                        (1000 * 60 * 60 * 24)
+                    )}{" "}
+                    days
+                  </p>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full">
+                  <Button
+                    asChild
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
+                  >
                     <Link href={`/deals/${deal.id}`}>View Deal</Link>
                   </Button>
                 </CardFooter>
@@ -88,6 +131,5 @@ export default function DealsPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }
-

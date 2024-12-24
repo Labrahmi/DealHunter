@@ -48,15 +48,15 @@ export default function SubscribePage() {
   ]
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="containerx mx-auto py-16">
+      <div className="mx-auto p-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-indigo-800 mb-4">Join the DealHunter Community</h1>
           <p className="text-xl text-gray-600">Get the hottest deals delivered straight to your inbox!</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <Card className="bg-gradient-to-br from-indigo-100 to-purple-100 shadow-xl">
+          <Card className="bg-white shadow-xl">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-indigo-800">Subscribe Now</CardTitle>
               <CardDescription>Customize your deal preferences</CardDescription>
@@ -112,7 +112,7 @@ export default function SubscribePage() {
             </ul>
             <div className="mt-8">
               <Image
-                src="/placeholder.svg"
+                src="/newsletter.jpg"
                 alt="Happy subscribers"
                 width={400}
                 height={300}
@@ -122,7 +122,7 @@ export default function SubscribePage() {
           </div>
         </div>
 
-        <div className="mt-16 bg-indigo-50 rounded-lg p-8 text-center">
+        <div className="mt-16 bg-indigo-50 rounded-lg p-8 text-center hidden">
           <h2 className="text-2xl font-bold text-indigo-800 mb-4">Join 50,000+ Deal Hunters</h2>
           <p className="text-gray-600 mb-6">Our subscribers save an average of $240 per month on their purchases!</p>
           <div className="flex justify-center space-x-4">
